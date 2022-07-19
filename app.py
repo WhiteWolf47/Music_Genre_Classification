@@ -73,6 +73,7 @@ files = upload_and_save_wavfiles()
 for wavpath in files:
     display_wavfile(wavpath)
     st.text(files[0])
+    st.write(os.getcwd())
 
 '''if st.button("Classify the Genre"):
     data = tf.data.Dataset.list_files(os.getcwd() + '/*.wav')
