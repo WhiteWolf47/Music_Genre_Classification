@@ -1,7 +1,7 @@
 import streamlit as st
-'''import tensorflow as tf
+import tensorflow as tf
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv2D, Dense, Flatten'''
+from tensorflow.keras.layers import Conv2D, Dense, Flatten
 import pydub
 from pathlib import Path
 import os
@@ -9,7 +9,7 @@ import os
 curr_dir = os.getcwd()
 genres_list = ['blues', 'classical', 'country', 'disco', 'hiphop', 'jazz', 'metal', 'pop', 'reggae', 'rock']
 
-'''def create_model():
+def create_model():
 
   Model = Sequential()
   Model.add(Conv2D(16, (3,3), activation='relu', input_shape=(160, 2049, 1)))
@@ -41,7 +41,7 @@ def preprocess(file_path):
     spectrogram = tf.signal.stft(wav, frame_length=3000, frame_step=3000)
     spectrogram = tf.abs(spectrogram)
     spectrogram = tf.expand_dims(spectrogram, axis=2)
-    return spectrogram'''
+    return spectrogram
 
 def upload_and_save_wavfiles():
     uploaded_files = st.file_uploader("upload", type=['wav', 'mp3'], accept_multiple_files=True)
@@ -65,32 +65,25 @@ def display_wavfile(wavpath):
     file_type = Path(wavpath).suffix
     st.audio(audio_bytes, format=f'audio/{file_type}', start_time=0)
 
-#model = create_model()
-#model.load_weights("cp.ckpt")
+model = create_model()
+model.load_weights("cp.ckpt")
 
 files = upload_and_save_wavfiles()
 
-for wavpath in files:
-    display_wavfile(wavpath)
-    #st.text(files[0])
-    #st.write(os.getcwd())
-    
-for i in os.listdir():
-    if i.endswith('wav'):
-      st.write(i)
-      os.remove(i)
+'''for wavpath in files:
+    display_wavfile(wavpath)'''
 
-'''if st.button("Classify the Genre"):
-    data = tf.data.Dataset.list_files(os.getcwd() + '/*.wav')
-    data = data.map(preprocess)
-    data = data.cache()
-    #data = data.shuffle(buffer_size=1000)
-    data = data.batch(2)
-    #data = data.prefetch(1)
-
-    for i in range(len(files)):
+if st.button("Classify the Genre"):
+    for file in range(len(files)):
+        data = tf.data.Dataset.list_files(file)
+        data = data.map(preprocess)
+        data = data.cache()
+        # data = data.shuffle(buffer_size=1000)
+        data = data.batch(2)
+        # data = data.prefetch(1)
         input = data.as_numpy_iterator().next()
         out = model.predict(input)
-        genre = genres_list[out[0]).index(max(out[0])]
-        display_wavfile()'''
+        genre = genres_list[out[0].index(max(out[0]))]
+        display_wavfile(file)
+        st.write(genre)
 
