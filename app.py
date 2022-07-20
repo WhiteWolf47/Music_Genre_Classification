@@ -74,6 +74,10 @@ for wavpath in files:
     display_wavfile(wavpath)
     st.text(files[0])
     st.write(os.getcwd())
+    
+for i in os.listdir():
+    if i.endswith('wav'):
+      st.write(i)
 
 '''if st.button("Classify the Genre"):
     data = tf.data.Dataset.list_files(os.getcwd() + '/*.wav')
