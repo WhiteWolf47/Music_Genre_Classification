@@ -72,8 +72,8 @@ files = upload_and_save_wavfiles()
 
 for wavpath in files:
     display_wavfile(wavpath)
-    st.text(files[0])
-    st.write(os.getcwd())
+    #st.text(files[0])
+    #st.write(os.getcwd())
     
 for i in os.listdir():
     if i.endswith('wav'):
