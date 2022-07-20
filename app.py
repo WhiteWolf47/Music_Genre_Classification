@@ -86,4 +86,5 @@ if st.button("Classify the Genre"):
         genre = genres_list[out[0].index(max(out[0]))]
         display_wavfile(file)
         st.write(genre)
+        os.remove(file)
 
