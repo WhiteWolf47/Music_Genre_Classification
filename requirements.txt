@@ -1,4 +1,4 @@
-streamlit==1.8.1
-pydub==0.25.1
-pathlib==1.0.1
-tensorflow==2.8.2
+streamlit
+pydub
+pathlib
+tensorflow
